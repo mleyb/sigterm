@@ -13,24 +13,26 @@ namespace sigterm
 		{
 			try
 			{
-				Console.Write("Starting up...");
-
 				// Capture SIGTERM
 				AssemblyLoadContext.Default.Unloading += OnAssemblyLoadContextUnloading;
+
+				Console.WriteLine("Application running...");
+
+				// << Do some stuff here >>
 
 				// Wait for a signal
 				_shutdownEvent.WaitOne();
 			}
 			catch (Exception ex)
 			{
-				Console.Write(ex.Message);
+				Console.WriteLine(ex.Message);
 			}
 			finally
 			{
-				Console.Write("Cleaning up resources");
+				Console.WriteLine("Cleaning up resources");
 			}
 
-			Console.Write("Exiting...");
+			Console.WriteLine("Exiting...");
 
 			_completeEvent.Set();
 
